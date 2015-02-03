@@ -1,0 +1,8 @@
+username=["aditya","arsh","swapnil"]
+password=["thakral","rampal","satpute"]
+name=["Aditya Thakral","Arsh Rampal","Swapnil Satpute"]
+email=["","",""]
+phone=["","",""]
+dep=["admin","admin","admin"]
+lastlogin=["","",""]
+lastloc=["","",""]
