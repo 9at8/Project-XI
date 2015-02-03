@@ -9,9 +9,9 @@ class db():
     email=["aditya.1998thakral@gmail.com","","",""]
     phone=["9717552963","","",""]
     dep=["it","it","it","Finance"]
-    pos=["Head","Head","Head"]
-    lastlogin=["","",""]
-    lastloc=["","",""]
+    pos=["Head","Head","Head","Manager"]
+    lastlogin=["","","",""]
+    lastloc=["","","",""]
     
 def wait():
     print "Press enter to continue..."
@@ -22,6 +22,9 @@ def lonely():
     print """
 You are in Human Resources.
 It's lonely here. We'll add someone here. Don't worry."""
+
+def cls():
+    print "\n"*100
 
 def login():
     print "Please login to continue."
@@ -38,7 +41,7 @@ def login():
                 i+=1
         if password==db.password[i]:
             wait()
-            #continue program
+            menu()
         else:
             print "Incorrect username or/and password."
     else:
@@ -48,28 +51,25 @@ def menu():
     print "Where do you want to go?"
     choice=int(raw_input("""
 1. Human Resources
-2. Administrative Office
-3. Marketing
-4. Finance
-5. Assembly Line
-6. Canteen
-7. Washroom
-8. IT Lab\nEnter a number corresponding to your choice"""))
+2. Marketing
+3. Finance
+4. Assembly Line
+5. Canteen
+6. Washroom
+7. IT Lab\nEnter a number corresponding to your choice"""))
     if choice==1:
         hr()
     elif choice==2:
-        admin()
-    elif choice==3:
         market()
-    elif choice==4:
+    elif choice==3:
         finance()
-    elif choice==5:
+    elif choice==4:
         assl()
-    elif choice==6:
+    elif choice==5:
         cant()
-    elif choice==7:
+    elif choice==6:
         wash()
-    elif choice==8:
+    elif choice==7:
         it()
     else:
         print "Enter a valid choice!"
@@ -87,10 +87,7 @@ PF
 Labour Laws
 admin
     """
-
-def admin():
-    lonely()
-#remove admin
+    
 def market():
     lonely()
     """
@@ -131,4 +128,6 @@ Server room-A/C
 Database
 Computers
     """
-    
+
+menu()
+cls()
