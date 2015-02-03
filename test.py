@@ -1,5 +1,3 @@
-import db
-
 username=""
 password=""
 
@@ -32,7 +30,23 @@ def login():
                 i+=1
         if password==db.password[i]:
             wait()
+            #continue program
         else:
             print "Incorrect username or/and password."
     else:
         print "Incorrect username or/and password."
+
+def menu():
+    print "Where do you want to go"
+    choice=raw_input("""
+1. Human Resources
+2. Administrative Office
+3. Marketing
+4. Finance
+5. Assembly Line
+6. Canteen
+7. Washroom
+8. IT office\n""")
+ 
+    
+        
