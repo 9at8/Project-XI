@@ -2,16 +2,59 @@ username=""
 password=""
 i=0
 
+#for saving database
+"""
+ab=open("username.txt","a")
+user=raw_input("Enter new username.")
+ab.write(user)
+"""
+#for initialising a database.
+
 class db():
-    username=["thk98","arsh","swapnil","jatin"]
-    password=["thakral","rampal","satpute","sethi"]
-    name=["Aditya Thakral","Arsh Rampal","Swapnil Satpute","Jatin Sethi"]
-    email=["aditya.1998thakral@gmail.com","","",""]
-    phone=["9717552963","","",""]
-    dep=["it","it","it","Finance"]
-    pos=["Head","Head","Head","Manager"]
-    lastlogin=["","","",""]
-    lastloc=["","","",""]
+    with open("DATABASE\username.txt") as _1_:
+        username=_1_.readlines()
+    for _1 in range (len(username)-1):
+        username[_1]=(username[_1])[:(len(username[_1])-1)]
+        
+    with open("DATABASE\password.txt") as _2_:
+        password=_2_.readlines()
+    for _2 in range (len(password)-1):
+        password[_2]=(password[_2])[:(len(password[_2])-1)]
+        
+    with open("DATABASE\names.txt") as _3_:
+        names=_3_.readlines()
+    for _3 in range (len(names)-1):
+        names[_3]=(names[_3])[:(len(names[_3])-1)]
+
+    with open("DATABASE\email.txt") as _4_:
+        email=_4_.readlines()
+    for _4 in range (len(email)-1):
+        email[_4]=(email[_4])[:(len(email[_4])-1)]
+        
+    with open("DATABASE\phone.txt") as _5_:
+        phone=_5_.readlines()
+    for _5 in range (len(phone)-1):
+        phone[_5]=(phone[_5])[:(len(phone[_5])-1)]
+        
+    with open("DATABASE\dep.txt") as _6_:
+        dep=_6_.readlines()
+    for _6 in range (len(dep)-1):
+        dep[_6]=(dep[_6])[:(len(dep[_6])-1)]
+        
+    with open("DATABASE\pos.txt") as _7_:
+        pos=_7_.readlines()
+    for _7 in range (len(pos)-1):
+        pos[_7]=(pos[_7])[:(len(pos[_7])-1)]
+        
+    with open("DATABASE\lastlogin.txt") as _8_:
+        lastlogin=_8_.readlines()
+    for _8 in range (len(lastlogin)-1):
+        lastlogin[_8]=(lastlogin[_8])[:(len(lastlogin[_8])-1)]
+        
+    with open("DATABASE\lastloc.txt") as _9_:
+        lastloc=_9_.readlines()
+    for _9 in range (len(lastloc)-1):
+        lastloc[_9]=(lastloc[_9])[:(len(lastloc[_9])-1)]
     
 def wait():
     print "Press enter to continue..."
@@ -20,8 +63,7 @@ def wait():
 
 def lonely():
     print """
-You are in Human Resources.
-It's lonely here. We'll add someone here. Don't worry."""
+It's lonely here. We'll add someone. Don't worry."""
 
 def cls():
     print "\n"*100
@@ -56,7 +98,7 @@ def menu():
 4. Assembly Line
 5. Canteen
 6. Washroom
-7. IT Lab\nEnter a number corresponding to your choice"""))
+7. IT Dept.\nEnter a number corresponding to your choice"""))
     if choice==1:
         hr()
     elif choice==2:
@@ -78,16 +120,51 @@ def menu():
 
 
 def hr():
-    lonely()
-    """
-recuitment
-employee welfare
-salary
-PF
-Labour Laws
-admin
-    """
-    
+    def recr():
+        print "You have entered recuitment."
+    def empl():
+        print "You have entered the employee welfare."
+    def sal():
+        print "You have entered the salary."
+    def pf():
+        print "You have entered the provident fund dept."
+    def lab():
+        print "You have entered labour laws."
+    def admin():
+        print "You have entered administrative office."
+    def int_menu():
+        print "Hi. You have entered Human Resources."
+        wait()
+        choice=int(raw_input("""
+Where in Human Resources do you want to go?
+
+1. Recuitment
+2. Employee Welfare
+3. Salary
+4. Provident Fund Dept.
+5. Labour Laws
+6. Administrative Office
+OR
+7. ACCESS DATABASE
+"""))
+        if choice==1:
+            recr()
+        elif choice==2:
+            empl()
+        elif choice==3:
+            sal()
+        elif choice==4:
+            pf()
+        elif choice==5:
+            lab()
+        elif choice==6:
+            admin()
+        elif choice==7:
+            print "This is a WIP."
+        else:
+            print "Please enter a valid option."
+            int_menu()
+            
 def market():
     lonely()
     """
@@ -129,5 +206,4 @@ Database
 Computers
     """
 
-menu()
-cls()
+print db.email
