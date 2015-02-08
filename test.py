@@ -1,3 +1,5 @@
+import time
+
 username=""
 password=""
 i=0
@@ -59,7 +61,6 @@ class db():
 def wait():
     print "Press enter to continue..."
     x=raw_input()
-    return None
 
 def lonely():
     print """
@@ -83,6 +84,14 @@ def login():
                 i+=1
         if password==db.password[i]:
             wait()
+            _y=str((time.localtime())[0])
+            _m=str((time.localtime())[1])
+            _d=str((time.localtime())[2])
+            _h=str((time.localtime())[3])
+            _min=str((time.localtime())[4])
+            _s=str((time.localtime())[5])
+            temp=_d+"/"+_m+"/"+_y+" - "+_h+":"+_min+":"+_s
+            db.lastlogin[i]=temp
             menu()
         else:
             print "Incorrect username or/and password."
@@ -206,4 +215,4 @@ Database
 Computers
     """
 
-print db.name
+login()
