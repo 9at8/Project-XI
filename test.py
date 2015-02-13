@@ -10,7 +10,6 @@ ab=open("username.txt","a")
 user=raw_input("Enter new username.")
 ab.write(user)
 """
-#for initialising a database.
 
 class db():
     with open("DATABASE/username.txt") as _1_:
@@ -48,7 +47,7 @@ class db():
     for _7 in range (len(pos)-1):
         pos[_7]=(pos[_7])[:(len(pos[_7])-1)]
         
-    with open("DATABASE/lastlogin.txt") as _8_:
+    with open("DATABASE/lastlogin.txt",) as _8_:
         lastlogin=_8_.readlines()
     for _8 in range (len(lastlogin)-1):
         lastlogin[_8]=(lastlogin[_8])[:(len(lastlogin[_8])-1)]
@@ -90,8 +89,9 @@ def login():
             _h=str((time.localtime())[3])
             _min=str((time.localtime())[4])
             _s=str((time.localtime())[5])
-            temp=_d+"/"+_m+"/"+_y+" - "+_h+":"+_min+":"+_s
+            temp="\n"+_d+"/"+_m+"/"+_y+" - "+_h+":"+_min+":"+_s+"\n"
             db.lastlogin[i]=temp
+            print db.lastlogin
             menu()
         else:
             print "Incorrect username or/and password."
@@ -104,7 +104,7 @@ def menu():
 1. Human Resources
 2. Marketing
 3. Finance
-4. Assembly Line
+4. Assembly
 5. Canteen
 6. Washroom
 7. IT Dept.\nEnter a number corresponding to your choice"""))
@@ -125,9 +125,7 @@ def menu():
     else:
         print "Enter a valid choice!"
         menu()
-
-
-
+        
 def hr():
     def recr():
         print "You have entered recuitment."
@@ -143,7 +141,6 @@ def hr():
         print "You have entered administrative office."
     def int_menu():
         print "Hi. You have entered Human Resources."
-        wait()
         choice=int(raw_input("""
 Where in Human Resources do you want to go?
 
@@ -173,33 +170,95 @@ OR
         else:
             print "Please enter a valid option."
             int_menu()
+    int_menu()
             
 def market():
-    lonely()
-    """
-product identification
-market requirements
-market location
-category of market
-    """
+    def prod():
+        print "You have entered product identification."
+    def mark_req():
+        print "You have entered market requirements."
+    def mark_loc():
+        print "You have entered market location."
+    def mark_cat():
+        print "You have entered category of market."
+    def int_menu():
+        choice=int(raw_input("""
+Where in Marketing do you want to go?
 
+1. Product Identification
+2. Market Requirements
+3. Category of Market
+4. Category of Market
+"""))
+        if choice==1:
+            prod()
+        elif choice==2:
+            mark_req()
+        elif choice==3:
+            mark_loc()
+        elif choice==4:
+            mark_cat()
+        else:
+            print "Please enter a valid option."
+            int_menu()
+    int_menu()
+        
 def finance():
-    lonely()
-    """
-Management of cash flow
-Management of expenses
-Management of income
-Management of Profitablity
-Investments
-    """
-def assl():
-    lonely()
-    """
-Components
-Jig and Fixture
-Testing Equipments
-Assembly Lines
-    """
+    def cash():
+        print "You have entered management of cash flow."
+    def exp():
+        print "You have entered management of expenses."
+    def inc():
+        print "You have entered management of income."
+    def prof():
+        print "You have entered management of profitablity."
+    def int_menu():
+        choice=int(raw_input("""
+Where in Finance do you want to go?
+
+1. Cash Flow
+2. Expenses
+3. Income
+4. Profitability
+"""))
+        if choice==1:
+            cash()
+        elif choice==2:
+            exp()
+        elif choice==3:
+            inc()
+        elif choice==4:
+            prof()
+        else:
+            print "Please enter a valid option."
+            int_menu()
+    int_menu()
+
+def ass():
+    def comp():
+        print "You have entered management of components."
+    def test():
+        print "You have entered management of testing equipments."
+    def assl():
+        print "You have entered management of assembly lines."
+    def int_menu():
+        choice=int(raw_input("""
+Where in Assembly do you want to go?
+
+1. Components
+2. Testing Equipments
+3. Assembly Lines
+"""))
+        if choice==1:
+            comp()
+        elif choice==2:
+            test()
+        elif choice==3:
+            assl()
+        else:
+            print "Please enter a valid option."
+            int_menu()
+    int_menu()
 
 def cant():
     lonely()
@@ -208,11 +267,27 @@ def wash():
     lonely()
 
 def it():
-    print "WIP"
-    """
-Server room-A/C
-Database
-Computers
-    """
+    def add():
+        print "WIP 1"
+    def remove():
+        print "WIP 2"
+    def view():
+        print "WIP 3"
+    def int_menu():
+        choice=int(raw_input("""
+What do you want to do?
 
-login()
+1. Add a new user
+2. Remove a user
+3. Assembly Lines
+"""))
+        if choice==1:
+            add()
+        elif choice==2:
+            remove()
+        elif choice==3:
+            view()
+        else:
+            print "Please enter a valid option."
+            int_menu()
+    int_menu()
