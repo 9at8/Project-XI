@@ -6,9 +6,10 @@ i=0
 
 #for saving database
 """
-ab=open("username.txt","a")
-user=raw_input("Enter new username.")
-ab.write(user)
+f=open("DATABASE/username.txt", "w")
+mylist=db.username
+f.write("\n".join(map(lambda x: str(x), mylist)))
+f.close()
 """
 
 class db():
@@ -16,54 +17,63 @@ class db():
         username=_1_.readlines()
     for _1 in range (len(username)-1):
         username[_1]=(username[_1])[:(len(username[_1])-1)]
+    _1_.close()
         
     with open("DATABASE/password.txt") as _2_:
         password=_2_.readlines()
     for _2 in range (len(password)-1):
         password[_2]=(password[_2])[:(len(password[_2])-1)]
+    _2_.close()
         
     with open("DATABASE/name.txt") as _3_:
         name=_3_.readlines()
     for _3 in range (len(name)-1):
         name[_3]=(name[_3])[:(len(name[_3])-1)]
+    _3_.close()
 
     with open("DATABASE/email.txt") as _4_:
         email=_4_.readlines()
     for _4 in range (len(email)-1):
         email[_4]=(email[_4])[:(len(email[_4])-1)]
+    _4_.close()
         
     with open("DATABASE/phone.txt") as _5_:
         phone=_5_.readlines()
     for _5 in range (len(phone)-1):
         phone[_5]=(phone[_5])[:(len(phone[_5])-1)]
+    _5_.close()
         
     with open("DATABASE/dep.txt") as _6_:
         dep=_6_.readlines()
     for _6 in range (len(dep)-1):
         dep[_6]=(dep[_6])[:(len(dep[_6])-1)]
+    _6_.close()
         
     with open("DATABASE/pos.txt") as _7_:
         pos=_7_.readlines()
     for _7 in range (len(pos)-1):
         pos[_7]=(pos[_7])[:(len(pos[_7])-1)]
+    _7_.close()
         
     with open("DATABASE/lastlogin.txt",) as _8_:
         lastlogin=_8_.readlines()
     for _8 in range (len(lastlogin)-1):
         lastlogin[_8]=(lastlogin[_8])[:(len(lastlogin[_8])-1)]
+    _8_.close()
         
     with open("DATABASE/lastloc.txt") as _9_:
         lastloc=_9_.readlines()
     for _9 in range (len(lastloc)-1):
         lastloc[_9]=(lastloc[_9])[:(len(lastloc[_9])-1)]
+    _9_.close()
+
+"""def save(x):
+    for item in db.username:
+    x.write("%s\n" % item)"""
     
 def wait():
     print "Press enter to continue..."
     x=raw_input()
-
-def lonely():
-    print """
-It's lonely here. We'll add someone. Don't worry."""
 
 def cls():
     print "\n"*100
@@ -268,7 +278,40 @@ def wash():
 
 def it():
     def add():
-        print "WIP 1"
+        user=raw_input("Enter new username\n")
+        if user in db.username:
+            print user,"already exists. Try a different one."
+            add()
+        elif len(user)<4:
+            print user,"is smaller than 4 characters."
+            add()
+        elif " " in user:
+            print "No spaces allowed."
+            add()
+        else:
+            (db.username).append(user)
+            f=open("DATABASE/username.txt", "w")
+            f.write("\n".join(map(lambda x: str(x), db.username)))
+            f.close()
+            wait()
+            def add_pwd():
+                pwd=raw_input("Enter a password\n")
+                if "\\" in db.password:
+                    print user,"You can't add \\."
+                    add_pwd()
+                elif len(pwd)<4:
+                    print pwd,"is smaller than 4 characters."
+                    add_pwd()
+                elif " " in pwd:
+                    print "No spaces allowed."
+                    add_pwd()
+                else:
+                    #writing
+                    (db.password).append(pwd)
+                    f=open("DATABASE/password.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.username)))
+                    f.close()
+                    wait()
     def remove():
         print "WIP 2"
     def view():
@@ -291,3 +334,4 @@ What do you want to do?
             print "Please enter a valid option."
             int_menu()
     int_menu()
+
