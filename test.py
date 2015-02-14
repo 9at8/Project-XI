@@ -306,12 +306,45 @@ def it():
                     print "No spaces allowed."
                     add_pwd()
                 else:
-                    #writing
                     (db.password).append(pwd)
                     f=open("DATABASE/password.txt", "w")
-                    f.write("\n".join(map(lambda x: str(x), db.username)))
+                    f.write("\n".join(map(lambda x: str(x), db.password)))
                     f.close()
                     wait()
+                    print db.password
+                    #NAME
+                    nm=raw_input("Enter a Name\n")
+                    (db.name).append(nm)
+                    f=open("DATABASE/name.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.name)))
+                    f.close()
+                    wait()
+                    print db.name
+                    #EMAIL
+                    em=raw_input("Enter an E-Mail id\n")
+                    (db.email).append(em)
+                    f=open("DATABASE/email.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.email)))
+                    f.close()
+                    wait()
+                    print db.email
+                    #PHONE
+                    ph=raw_input("Enter a phone number\n")
+                    (db.phone).append(ph)
+                    f=open("DATABASE/phone.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.phone)))
+                    f.close()
+                    wait()
+                    print db.phone
+                    #DEPT
+                    dp=raw_input("Specify the department\n")
+                    (db.dep).append(dp)
+                    f=open("DATABASE/dep.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.dep)))
+                    f.close()
+                    wait()
+                    print db.dep
+            add_pwd()
     def remove():
         print "WIP 2"
     def view():
@@ -334,4 +367,3 @@ What do you want to do?
             print "Please enter a valid option."
             int_menu()
     int_menu()
-
