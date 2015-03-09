@@ -4,14 +4,6 @@ username=""
 password=""
 i=0
 
-#for saving database
-"""
-f=open("DATABASE/username.txt", "w")
-mylist=db.username
-f.write("\n".join(map(lambda x: str(x), mylist)))
-f.close()
-"""
-
 class db():
     with open("DATABASE/username.txt") as _1_:
         username=_1_.readlines()
@@ -48,13 +40,7 @@ class db():
     for _6 in range (len(dep)-1):
         dep[_6]=(dep[_6])[:(len(dep[_6])-1)]
     _6_.close()
-        
-    with open("DATABASE/pos.txt") as _7_:
-        pos=_7_.readlines()
-    for _7 in range (len(pos)-1):
-        pos[_7]=(pos[_7])[:(len(pos[_7])-1)]
-    _7_.close()
-        
+  
     with open("DATABASE/lastlogin.txt",) as _8_:
         lastlogin=_8_.readlines()
     for _8 in range (len(lastlogin)-1):
@@ -66,10 +52,6 @@ class db():
     for _9 in range (len(lastloc)-1):
         lastloc[_9]=(lastloc[_9])[:(len(lastloc[_9])-1)]
     _9_.close()
-
-"""def save(x):
-    for item in db.username:
-    x.write("%s\n" % item)"""
     
 def wait():
     print "Press enter to continue..."
@@ -86,7 +68,7 @@ def login():
     username=raw_input("Username: ")
     password=raw_input("Password: ")
     if username in db.username:
-        for i in range (0,len(db.username)):
+        for i in range (0,len(db.username)-1):
             if username==db.username[i]:
                 break
             else:
@@ -99,9 +81,11 @@ def login():
             _h=str((time.localtime())[3])
             _min=str((time.localtime())[4])
             _s=str((time.localtime())[5])
-            temp="\n"+_d+"/"+_m+"/"+_y+" - "+_h+":"+_min+":"+_s+"\n"
+            temp=_d+"/"+_m+"/"+_y+" - "+_h+":"+_min+":"+_s
             db.lastlogin[i]=temp
-            print db.lastlogin
+            f=open("DATABASE/lastlogin.txt", "w")
+            f.write("\n".join(map(lambda x: str(x), db.lastlogin)))
+            f.close()
             menu()
         else:
             print "Incorrect username or/and password."
@@ -109,6 +93,7 @@ def login():
         print "Incorrect username or/and password."
 
 def menu():
+    global i
     print "Where do you want to go?"
     choice=int(raw_input("""
 1. Human Resources
@@ -119,18 +104,46 @@ def menu():
 6. Washroom
 7. IT Dept.\nEnter a number corresponding to your choice"""))
     if choice==1:
+        db.lastloc[i]="Human Resources"
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         hr()
     elif choice==2:
+        db.lastloc[i]="Marketing"
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         market()
     elif choice==3:
+        db.lastloc[i]="Finance"
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         finance()
     elif choice==4:
+        db.lastloc[i]="Assembly"
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         assl()
     elif choice==5:
+        db.lastloc[i]="Canteen"
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         cant()
     elif choice==6:
+        db.lastloc[i]="Washroom"
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         wash()
     elif choice==7:
+        db.lastloc[i]="IT Dept."
+        f=open("DATABASE/lastloc.txt", "w")
+        f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+        f.close()
         it()
     else:
         print "Enter a valid choice!"
@@ -271,10 +284,10 @@ Where in Assembly do you want to go?
     int_menu()
 
 def cant():
-    lonely()
+    print "FUN TIME!"
 
 def wash():
-    lonely()
+    print "NOT SO MUCH FUN TIME!"
 
 def it():
     def add():
@@ -311,7 +324,6 @@ def it():
                     f.write("\n".join(map(lambda x: str(x), db.password)))
                     f.close()
                     wait()
-                    print db.password
                     #NAME
                     nm=raw_input("Enter a Name\n")
                     (db.name).append(nm)
@@ -319,7 +331,6 @@ def it():
                     f.write("\n".join(map(lambda x: str(x), db.name)))
                     f.close()
                     wait()
-                    print db.name
                     #EMAIL
                     em=raw_input("Enter an E-Mail id\n")
                     (db.email).append(em)
@@ -327,7 +338,6 @@ def it():
                     f.write("\n".join(map(lambda x: str(x), db.email)))
                     f.close()
                     wait()
-                    print db.email
                     #PHONE
                     ph=raw_input("Enter a phone number\n")
                     (db.phone).append(ph)
@@ -335,7 +345,6 @@ def it():
                     f.write("\n".join(map(lambda x: str(x), db.phone)))
                     f.close()
                     wait()
-                    print db.phone
                     #DEPT
                     dp=raw_input("Specify the department\n")
                     (db.dep).append(dp)
@@ -343,19 +352,81 @@ def it():
                     f.write("\n".join(map(lambda x: str(x), db.dep)))
                     f.close()
                     wait()
-                    print db.dep
+                    #LASTLOGIN
+                    (db.lastlogin).append(" ")
+                    f=open("DATABASE/lastlogin.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.lastlogin)))
+                    f.close()
+                    #LASTLOC
+                    (db.lastloc).append(" ")
+                    f=open("DATABASE/lastloc.txt", "w")
+                    f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+                    f.close()
             add_pwd()
     def remove():
-        print "WIP 2"
+        rem_user=raw_input("Enter the username of the user to remove\n")
+        for i in range (0,(len(db.username))):
+            if rem_user==db.username[i]:
+                del(db.username[i])
+                del(db.password[i])
+                del(db.name[i])
+                del(db.email[i])
+                del(db.phone[i])
+                del(db.dep[i])
+                del(db.lastlogin[i])
+                del(db.lastloc[i])
+                f=open("DATABASE/username.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.username)))
+                f.close()
+                f=open("DATABASE/password.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.password)))
+                f.close()
+                f=open("DATABASE/name.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.name)))
+                f.close() 
+                f=open("DATABASE/email.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.email)))
+                f.close()
+                f=open("DATABASE/phone.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.phone)))
+                f.close()
+                f=open("DATABASE/dep.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.dep)))
+                f.close()
+                f=open("DATABASE/lastlogin.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.lastlogin)))
+                f.close()
+                f=open("DATABASE/lastloc.txt", "w")
+                f.write("\n".join(map(lambda x: str(x), db.lastloc)))
+                f.close()
+                
     def view():
-        print "WIP 3"
+        x=" "
+        while x!="0":
+            print "Press 1 after the username to choose it and enter for next username."
+            wait()
+            for i in range(len(db.username)):
+                print db.username[i]
+                choice=raw_input()
+                if choice=="1":
+                    break
+            print "Details of",db.username[i],"are :"
+            print "Password :",db.password[i]
+            print "Name :",db.name[i]
+            print "Email :",db.email[i]
+            print "Phone :",db.phone[i]
+            print "Department :",db.dep[i]
+            print "Last Login Time :",db.lastlogin[i]
+            print "Last Location :",db.lastloc[i]
+            x=raw_input("Enter anything to repeat the above process, or 0 to return")
+            
     def int_menu():
         choice=int(raw_input("""
 What do you want to do?
 
 1. Add a new user
 2. Remove a user
-3. Assembly Lines
+3. View Database
 """))
         if choice==1:
             add()
@@ -367,3 +438,5 @@ What do you want to do?
             print "Please enter a valid option."
             int_menu()
     int_menu()
+
+login()
