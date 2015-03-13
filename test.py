@@ -4,61 +4,50 @@ username=""
 password=""
 i=0
 
-class db():
+class db:
     with open("DATABASE/username.txt") as _1_:
         username=_1_.readlines()
     for _1 in range (len(username)-1):
-        username[_1]=(username[_1])[:(len(username[_1])-1)]
-    _1_.close()
+        username[_1]=(username[_1])[:-1]
         
     with open("DATABASE/password.txt") as _2_:
         password=_2_.readlines()
     for _2 in range (len(password)-1):
-        password[_2]=(password[_2])[:(len(password[_2])-1)]
-    _2_.close()
+        password[_2]=(password[_2])[:-1]
         
     with open("DATABASE/name.txt") as _3_:
         name=_3_.readlines()
     for _3 in range (len(name)-1):
-        name[_3]=(name[_3])[:(len(name[_3])-1)]
-    _3_.close()
+        name[_3]=(name[_3])[:-1]
 
     with open("DATABASE/email.txt") as _4_:
         email=_4_.readlines()
     for _4 in range (len(email)-1):
-        email[_4]=(email[_4])[:(len(email[_4])-1)]
-    _4_.close()
+        email[_4]=(email[_4])[:-1]
         
     with open("DATABASE/phone.txt") as _5_:
         phone=_5_.readlines()
     for _5 in range (len(phone)-1):
-        phone[_5]=(phone[_5])[:(len(phone[_5])-1)]
-    _5_.close()
+        phone[_5]=(phone[_5])[:-1]
         
     with open("DATABASE/dep.txt") as _6_:
         dep=_6_.readlines()
     for _6 in range (len(dep)-1):
-        dep[_6]=(dep[_6])[:(len(dep[_6])-1)]
-    _6_.close()
+        dep[_6]=(dep[_6])[:-1]
   
     with open("DATABASE/lastlogin.txt",) as _8_:
         lastlogin=_8_.readlines()
     for _8 in range (len(lastlogin)-1):
-        lastlogin[_8]=(lastlogin[_8])[:(len(lastlogin[_8])-1)]
-    _8_.close()
+        lastlogin[_8]=(lastlogin[_8])[:-1]
         
     with open("DATABASE/lastloc.txt") as _9_:
         lastloc=_9_.readlines()
     for _9 in range (len(lastloc)-1):
-        lastloc[_9]=(lastloc[_9])[:(len(lastloc[_9])-1)]
-    _9_.close()
+        lastloc[_9]=(lastloc[_9])[:-1]
     
 def wait():
     print "Press enter to continue..."
     x=raw_input()
-
-def cls():
-    print "\n"*100
 
 def login():
     print "Please login to continue."
@@ -71,8 +60,6 @@ def login():
         for i in range (0,len(db.username)-1):
             if username==db.username[i]:
                 break
-            else:
-                i+=1
         if password==db.password[i]:
             wait()
             _y=str((time.localtime())[0])
@@ -88,7 +75,7 @@ def login():
             f.close()
             menu()
         else:
-            print "Incorrect username or/and password."
+            print "Incorrect username or/and password"        
     else:
         print "Incorrect username or/and password."
 
@@ -405,11 +392,15 @@ def it():
         while x!="0":
             print "Press 1 after the username to choose it and enter for next username."
             wait()
-            for i in range(len(db.username)):
+            i=0
+            choice=""
+            while choice!="1":
                 print db.username[i]
                 choice=raw_input()
-                if choice=="1":
-                    break
+                if i==(len(db.username)-1):
+                    i=0
+                else:
+                    i+=1
             print "Details of",db.username[i],"are :"
             print "Password :",db.password[i]
             print "Name :",db.name[i]
